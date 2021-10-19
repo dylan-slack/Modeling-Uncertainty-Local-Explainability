@@ -55,7 +55,7 @@ def main(args):
     # Compute explanation
     exp_init = BayesLocalExplanations(training_data=xtrain,
                                               data="image",
-                                              kernel="shap",
+                                              kernel="lime",
                                               categorical_features=np.arange(xtrain.shape[1]),
                                               verbose=True)
     rout = exp_init.explain(classifier_f=cur_model,
