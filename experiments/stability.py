@@ -33,7 +33,7 @@ parser.add_argument("--n_samples", default=5_000, type=int)
 parser.add_argument("--batch_size", default=2_500, type=int)
 parser.add_argument("--overwrite_save", default=False, type=bool)
 parser.add_argument("--verbose", action='store_true')
-parser.add_argument("--seed", default=0)
+parser.add_argument("--seed", default=0, type=int)
 
 
 def get_epsilon_tightness(args):

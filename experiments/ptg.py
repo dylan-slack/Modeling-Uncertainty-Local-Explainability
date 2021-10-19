@@ -60,8 +60,6 @@ def run_ptg(args):
         segs = model_and_data["xtest_segs"]
         get_model = model_and_data["model"]
         label = model_and_data["label"]
-        categorical_indices = np.arange(xtrain.shape[1])
-
         if args.num is None:
             args.num = xtest.shape[0]
 
@@ -83,7 +81,7 @@ def run_ptg(args):
                 exp_init = BayesLocalExplanations(training_data=xtrain,
                                                   data=args.datatype,
                                                   kernel=args.kernel,
-                                                  categorical_features=categorical_indices,
+                                                  categorical_features=np.arange(xtrain.shape[1]),
                                                   verbose=args.verbose)
                 out = exp_init.explain(classifier_f=model,
                                        data=np.ones_like(xtrain[0]),
