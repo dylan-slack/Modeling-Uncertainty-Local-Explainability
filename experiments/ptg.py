@@ -18,7 +18,7 @@ sys.path.append(parent_dir)
  
 from bayes.explanations import BayesLocalExplanations, explain_many
 from bayes.data_routines import get_dataset_by_name
-from bayes.models import process_tabular_data_get_model, process_mnist_get_model
+from bayes.models import process_tabular_data_get_model, process_mnist_get_model, get_xtrain
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--kernel", required=True)
@@ -55,7 +55,6 @@ def run_ptg(args):
     if image_dataset:
 
         # Get data
-        xtrain = model_and_data["xtrain"]
         xtest = model_and_data["xtest"]
         ytest = model_and_data["ytest"]
         segs = model_and_data["xtest_segs"]
@@ -78,6 +77,7 @@ def run_ptg(args):
                 instance = xtest[i]
                 segments = segs[i]
                 model = get_model(instance, segments)
+                xtrain = get_xtrain(segments)
 
                 # Compute the explanation
                 exp_init = BayesLocalExplanations(training_data=xtrain,
