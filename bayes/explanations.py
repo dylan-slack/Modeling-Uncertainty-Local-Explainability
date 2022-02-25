@@ -184,11 +184,12 @@ class BayesLocalExplanations:
                 current_perturbations = self._stack_tabular_return(enumerate_init_p, initial_perturbations)
             else:
                 current_perturbations = initial_perturbations
+                
+            current_n_perturbations += initial_perturbations[0].shape[0]
         else:
             current_perturbations = enumerate_init_p
         
         current_perturbations = list(current_perturbations)
-        current_n_perturbations += initial_perturbations[0].shape[0]
         
         # Store initial predictions
         current_perturbations.append(classifier_f(current_perturbations[SINVERSE])[:, label])
