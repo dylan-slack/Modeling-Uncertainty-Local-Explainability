@@ -132,11 +132,7 @@ def add_image_epsilon(X, n_examples=100, mnist=False):
         n_p = np.random.normal(loc=0, scale=1, size=(n_examples, 5, 224, 224, 3))
 
     # Perturb instances
-    neighbors = []
-    for i in range(n_examples):
-        neighbors.append(X_to_eps[i] + n_p[i])
-    neighbors = np.array(neighbors)
-    
+    neighbors = np.add(X_to_eps[:n_examples],n_p[:n_examples])    
     return neighbors
 
 
